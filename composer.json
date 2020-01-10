@@ -1,0 +1,10 @@
+{
+    "name": "product/collection",
+    "description": "Collection",
+    "type": "composer-plugin",
+    "require": {
+        "product/collection": "dev-master"
+    },
+    "license": "MIT",
+    "minimum-stability": "dev"
+}

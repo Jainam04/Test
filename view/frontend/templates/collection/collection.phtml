@@ -1,0 +1,61 @@
+<table border="2" width="100%" style="text-align: center;">
+	<tr>
+		<td><b>Id</b></td>
+		<td><b>Img</b></td>
+		<td><b>Sku</b></td>
+		<td><b>Name</b></td>
+		<td><b>Stock Item</b></td>
+		<td><b>Is In Stock</b></td>
+		<td><b>Price</b></td>
+	</tr>
+	
+<?php
+$objectManager =  \Magento\Framework\App\ObjectManager::getInstance();        
+ 
+$appState = $objectManager->get('\Magento\Framework\App\State');
+$appState->setAreaCode('frontend');
+ 
+$productCollectionFactory = $objectManager->get('\Magento\Catalog\Model\ResourceModel\Product\CollectionFactory');
+$collection = $productCollectionFactory->create();
+$collection->addAttributeToSelect('*');
+$collection->setPageSize(3);
+ 
+foreach ($collection as $product) {
+    print_r($product->getData());     
+    echo "<br>";
+}
+?>
+
+<!-- <?php
+	$productCollection = $block->getProductCollection();
+	foreach ($productCollection as $product) {
+    print_r($product->getData());     
+    
+			$id = $product->getId();
+			$img = $product->getImageurl();
+			$sku = $product->getSku();
+			$name = $product->getName();
+			$sitem = $product->getStockItem()->getQty();
+			$stock = $product->getIsInStock();
+			$pri = $product->getPrice();
+			if($stock == 1)
+			{
+				$stock = "In Stock";
+			}
+			else
+			{
+				$stock = "Out of Stock";
+			}
+
+			echo "<tr>";
+			echo "<td>".$id."</td>";
+			echo "<td><img src=".$img." width='70px' height='70px'></td>";
+			echo "<td>".$sku."</td>";
+			echo "<td>".$name."</td>";
+			echo "<td>".$sitem."</td>";
+			echo "<td>".$stock."</td>";
+			echo "<td>".$pri."</td>";
+			echo "</tr>";
+		}
+	?> -->
+</table>
